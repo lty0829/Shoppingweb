@@ -70,7 +70,8 @@
 									回复内容：
 								</td>
 								<td>
-									<textarea name="replyContent"></textarea>
+									
+									<textarea name="replyContent"><%if(word.getStatus()==1){%><%=word.getReply() %><%} %></textarea>
 								</td>
 							</tr>
 							<tr>
