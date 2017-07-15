@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.5"
+ xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <display-name>ShoppingWeb</display-name>
+ <servlet>
+  <display-name>Onlogin</display-name>
+  <servlet-name>Onlogin</servlet-name>
+  <servlet-class>Shopping.controller.Onlogin</servlet-class>
+ </servlet>
+ <servlet>
+  <display-name>outlog</display-name>
+  <servlet-name>outlog</servlet-name>
+  <servlet-class>Shopping.controller.outlog</servlet-class>
+ </servlet>
+ <servlet>
+  <display-name>Hello</display-name>
+  <servlet-name>Hello</servlet-name>
+  <servlet-class>Shopping.controller.Hello</servlet-class>
+ </servlet>
+ <servlet>
+  <servlet-name>RegServlet</servlet-name>
+  <servlet-class>Shopping.controller.RegServlet</servlet-class>
+ </servlet>
+ <servlet>
+  <display-name>Newlook</display-name>
+  <servlet-name>Newlook</servlet-name>
+  <servlet-class>Shopping.controller.Newlook</servlet-class>
+ </servlet>
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>This is the display name of my J2EE component</display-name>
+  <servlet-name>managecast</servlet-name>
+  <servlet-class>Shopping.controller.managecast</servlet-class>
+ </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Order</servlet-name>
+    <servlet-class>Shopping.controller.Order</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Alter</servlet-name>
+    <servlet-class>Shopping.controller.Alter</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ManageClassify</servlet-name>
+    <servlet-class>Shopping.controller.ManageClassify</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ManageCom</servlet-name>
+    <servlet-class>Shopping.controller.ManageCom</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Userchange</servlet-name>
+    <servlet-class>Shopping.controller.Userchange</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LeaveWord</servlet-name>
+    <servlet-class>Shopping.controller.LeaveWord</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ManageGust</servlet-name>
+    <servlet-class>Shopping.controller.ManageGust</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+ <servlet-mapping>
+  <servlet-name>Hello</servlet-name>
+  <url-pattern>/Hello</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>Onlogin</servlet-name>
+  <url-pattern>/Onlogin</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>outlog</servlet-name>
+  <url-pattern>/outlog</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>RegServlet</servlet-name>
+  <url-pattern>/RegServlet</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>Newlook</servlet-name>
+  <url-pattern>/Newlook</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>managecast</servlet-name>
+  <url-pattern>/managecast</url-pattern>
+ </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Order</servlet-name>
+    <url-pattern>/Order</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Alter</servlet-name>
+    <url-pattern>/Alter</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ManageClassify</servlet-name>
+    <url-pattern>/manage/ManageClassify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ManageCom</servlet-name>
+    <url-pattern>/manage/ManageCom</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Userchange</servlet-name>
+    <url-pattern>/manage/Userchange</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LeaveWord</servlet-name>
+    <url-pattern>/LeaveWord</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ManageGust</servlet-name>
+    <url-pattern>/manage/ManageGust</url-pattern>
+  </servlet-mapping>
+
+ <welcome-file-list>
+  <welcome-file>index.html</welcome-file>
+  <welcome-file>index.htm</welcome-file>
+  <welcome-file>index.jsp</welcome-file>
+  <welcome-file>default.html</welcome-file>
+  <welcome-file>default.htm</welcome-file>
+  <welcome-file>default.jsp</welcome-file>
+ </welcome-file-list>
+ <login-config>
+  <auth-method>BASIC</auth-method>
+ </login-config>
+</web-app>
