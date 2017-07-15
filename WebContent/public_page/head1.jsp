@@ -11,6 +11,7 @@
 		<div class="box">
 			<h2>商品分类</h2>
 			<dl>
+				<dt>百货</dt>
 				<%
 				while(csfIter.hasNext()){	
 					Classify csf = (Classify)csfIter.next(); %>

@@ -53,6 +53,8 @@
 				<%} %>		
 			</ul>
 		</div>
+		<jsp:include page="./public_page/new.jsp"/>
+		
 		
     </div>
 </div>

@@ -1339,6 +1339,37 @@ public class ShoppingDAOImpl implements IShoppingDAO{
 		}
 		return word;
 	}
+	@Override
+	public Orders findorderByid(int orderid) {
+		// TODO Auto-generated method stub
+		String sql = "select * from orders where OrderID = ?";
+		Orders order = null;
+		try{
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, orderid);
+			ResultSet rs = this.pstmt.executeQuery();
+			while(rs.next()){
+				order = new Orders();
+				order.setOrderID(rs.getInt("OrderID"));
+				order.setUserID(rs.getInt("UserID"));
+				order.setOrderDate(rs.getTimestamp("OrderDate"));
+				order.setStatue(rs.getInt("Statue"));
+				order.setTotalprice(rs.getFloat("Totalprice"));
+			}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				this.pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return order;
+	}
 
 
 }

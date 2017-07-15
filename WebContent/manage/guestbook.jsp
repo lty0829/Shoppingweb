@@ -76,11 +76,12 @@
 								姓名
 							</th>
 							<th>
-								留言内容
-							</th>
-							<th>
 								时间
 							</th>
+							<th>
+								留言内容
+							</th>
+
 							<th>
 								状态
 							</th>
@@ -125,11 +126,12 @@
 							<td class="w1 c">
 								<%=user1.getUserName() %>
 							</td>
-							<td>
-								<%=word.getLeaveWord() %>
-							</td>
+							
 							<td>
 								<%=word.getLeaveDate() %>
+							</td>
+							<td>
+								<%=word.getLeaveWord() %>
 							</td>
 							<%if(word.getStatus()!=0){ %>
 							<td class="w1 c">

@@ -14,23 +14,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="scripts/function.js"></script>
+<style type="text/css">
+	#shopping .total1{height:30px;}
+#shopping .total1 span{float:right;line-height:30px;}
+.big{ margin-left: 80px;font-size:x-large;margin-top: 10px;margin-bottom: 10px  }
+</style>
 </head>
   <%
   	User user = (User) session.getAttribute("user");
   	
    %>
-   <script language="JavaScript">
-	$(function(){
-		$(".button").find("input").click(function(){
-			 if(confirm("地址：<%=user.getAddress()%>\n确定购买？")) {
-			 	
-			}
-			else{
-				return false;
-			}				
-		});
-	})
-</script>
+ 
 <%
 		String message = (String) request.getAttribute("message");
 		if (message == null)
@@ -44,57 +38,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			out.println("</script>");
 		}
 		request.removeAttribute("message");
+		String orderid = request.getParameter("orderid");
+		List<Follow> flwlist = null;
+		Orders order = null;
+		if(orderid!=null){
+		int int_order = Integer.parseInt(orderid);
+		flwlist = DAOFactory.getIShoppingDAOInstance().findFlwById(int_order);
+		order = DAOFactory.getIShoppingDAOInstance().findorderByid(int_order);
+		}
+		else flwlist = new ArrayList<Follow>();
 	%>
-  <body>
+  <body >
     <jsp:include page="./public_page/head.jsp"/>
     <div id="position" class="wrap">
 	您现在的位置：<a href="index.jsp">秀品网</a> &gt; 购物车
 	</div>
 	<div class="wrap">
 	<div id="shopping">
-		<form action="managecast" method="post">
+			<div class ="big"> 状态 ：<%if(order.getStatue()==0){%>未发货<%}else if(order.getStatue()==1){%>未收货<%}else{%>已完成<%} %></div>
 			<table>
 				<tr>
-					<th>状态</th>
 					<th>商品名称</th>
 					<th>商品价格</th>
 					<th>购买数量</th>
-					<th>操作</th>
 				</tr>
 				<%
-				int quantity=0;
+				double quantity=0;
 				if(user!=null){
-					List<Cast> list = DAOFactory.getIShoppingDAOInstance().getAllcastByid(user.getUserid());
-					if(list!=null){
-					Iterator iterator = list.iterator();
+					if(flwlist!=null){
+					Iterator iterator = flwlist.iterator();
 					while(iterator.hasNext()){
-						Cast cast = (Cast)iterator.next();
-						Commodity com = DAOFactory.getIShoppingDAOInstance().findComById(cast.getCommodityid());
+						Follow follow = (Follow)iterator.next();
+						Commodity com = DAOFactory.getIShoppingDAOInstance().findComById(follow.getCommodityid());
 				 %>
 				<tr id="product_id_<%=quantity %>">
-					<td class="choic"><input name="Fruit" type="checkbox" value="<%=com.getCommodityID() %>" style="zoom:130%;" checked/></td>
+				
 					<td class="thumb"><img src="images/product/<%=com.getCommodityID()%>_small.jpg" /><a href="Newlook?id=<%=com.getCommodityID() %>"><%=com.getCommodityName() %></a></td>
-					<td class="price" id="price_id_<%=quantity %>>">
+					<td class="price">
 						<span>￥<%=com.getCommodityPrice() %></span>
-						<input type="hidden" name="price" value="<%=com.getCommodityPrice() %>" />
 					</td>
 					<td class="number">
-                        <span name="del">-</span>
-                        <input id="number_id_<%=quantity %>" type="text" name="number" value="<%=cast.getQuantity() %>" />
-                        <span name="add">+</span>
+					 <%=follow.getQuantity() %>
 					</td>
-					<td class="delete"><a href="managecast?castid=<%=cast.getCastid() %>">删除</a></td>
 					<td><input type="hidden" name="comid" value="<%=com.getCommodityID() %>"/></td>
 				</tr>
-               <% quantity++;
+               <% quantity+=follow.getQuantity()*com.getCommodityPrice();
                		}
                		}
                }%>
                
 			</table>
-            <div class="total"><span id="total">总计：￥0</span></div>
-			<div class="button"><input type="submit" value="" /></div>
-		</form>
+            <div class="total1"><span id="total1">总计：￥<%=quantity %></span></div>
 	</div>
 </div>
   </body>

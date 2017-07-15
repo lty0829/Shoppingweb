@@ -18,6 +18,8 @@
 				<script type="text/javascript"
 			src="scripts/My97DatePicker/WdatePicker.js"></script>
 		<script type="text/javascript" src="scripts/function.js"></script>
+		
+		
 			<script language="JavaScript">
 		
 		$(function() {
@@ -129,7 +131,7 @@
 					%>
 					<tr>
 						<th colspan="2">
-							单号：<%=order.getOrderID()%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：<%=order.getOrderDate()%></th>
+							<a href="order-list.jsp?orderid=<%=order.getOrderID() %>" class="aorder">单号：<%=order.getOrderID()%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：<%=order.getOrderDate()%></a></th>
 						<%
 							if (order.getStatue() == 0) {
 						%>
@@ -160,7 +162,6 @@
 										.findComById(followlist.get(i).getCommodityid());
 								if (i == 0) {
 					%>
-
 					<tr>
 						<td class="first w3  c"><%=com.getCommodityName()%></td>
 						<td>

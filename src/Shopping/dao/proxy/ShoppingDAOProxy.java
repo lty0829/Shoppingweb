@@ -730,5 +730,21 @@ public class ShoppingDAOProxy implements IShoppingDAO{
 		}
 		return word;
 	}
+
+
+
+	@Override
+	public Orders findorderByid(int orderid) {
+		// TODO Auto-generated method stub
+		Orders order = null;
+		order = this.dao.findorderByid(orderid);
+		try {
+			this.dbc.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return order;
+	}
 	
 }

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	import="java.util.*,Shopping.model.vo.*" pageEncoding="utf-8"%>
 <%@page import="Shopping.factory.DAOFactory,java.sql.Timestamp"%>
@@ -89,7 +90,7 @@ function openPage(curpage) {
 		<jsp:include page="./public_page/head.jsp" />
 		<div id="position" class="wrap">
 			您现在的位置：
-			<a href="index.jsp">易买网</a> &gt;
+			<a href="index.jsp">秀品网</a> &gt;
 			<a href="product-list.jsp?csf=<%=com.getType()%>"><%=csf.getName()%></a>
 			&gt; 商品
 		</div>
@@ -98,6 +99,8 @@ function openPage(curpage) {
 
 
 			<div id="product" class="main">
+			
+			<%//System.out.print(com.getCommodityName()); %>
 				<h1><%=com.getCommodityName()%></h1>
 				<div class="infos">
 					<div class="thumb">
@@ -115,10 +118,28 @@ function openPage(curpage) {
 							<span name="add">+</span>
 						</div>
 						<div class="button">
+						<script type="text/javascript">
+							function beyondcall(){
+								alert("购物车超过十件");
+							}
+						</script>
 							<input type="button" name="button" value="" />
-
+								<%  
+									int castnum=0;
+									List<Cast> castlist=null;
+									
+									if(user!=null){
+										castlist = DAOFactory.getIShoppingDAOInstance().getAllcastByid(user.getUserid());
+									}
+									if(castlist!=null) castnum=castlist.size();
+								 %>
 							<a
-								href="managecast?commodityid=<%=com.getCommodityID()%><%if (user != null) {%>&&userid=<%=user.getUserid()%><%}%>">放入购物车</a>
+								href="<%if (user != null) 
+								{
+								if(castnum<10){%>managecast?commodityid=<%=com.getCommodityID()%>&&userid=<%=user.getUserid()%><%}
+								else {%>#" onclick="beyondcall()<%}
+																			
+								}%>">放入购物车</a>
 						</div>
 					</div>
 					<div class="clear"></div>

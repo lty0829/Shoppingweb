@@ -211,11 +211,11 @@ public class ManageCom extends HttpServlet {
 			                                     0, null);   
 			                             ImageIO.write(buffImg, "JPG", new File(s+"\\"+result+".jpg"));
 			                             
-			                             buffImg = new BufferedImage(picsize, picsize, BufferedImage.TYPE_INT_RGB);  
-			                             buffImg.getGraphics().drawImage(  
-			                                     srcImg.getScaledInstance(picsize, picsize, Image.SCALE_SMOOTH), 0,  
-			                                     0, null);   
-			                             ImageIO.write(buffImg, "JPG", new File(s1+"\\"+result+".jpg"));
+//			                             buffImg = new BufferedImage(picsize, picsize, BufferedImage.TYPE_INT_RGB);  
+//			                             buffImg.getGraphics().drawImage(  
+//			                                     srcImg.getScaledInstance(picsize, picsize, Image.SCALE_SMOOTH), 0,  
+//			                                     0, null);   
+//			                             ImageIO.write(buffImg, "JPG", new File(s1+"\\"+result+".jpg"));
 			                             
 			                             
 			                             
@@ -225,11 +225,11 @@ public class ManageCom extends HttpServlet {
 			                                     0, null);   
 			                             ImageIO.write(buffImg, "JPG", new File(s+"\\"+result+"_small.jpg"));
 			                             
-			                             buffImg = new BufferedImage(smallpicsize, smallpicsize, BufferedImage.TYPE_INT_RGB);  
-			                             buffImg.getGraphics().drawImage(  
-			                                     srcImg.getScaledInstance(smallpicsize, smallpicsize, Image.SCALE_SMOOTH), 0,  
-			                                     0, null);   
-			                             ImageIO.write(buffImg, "JPG", new File(s1+"\\"+result+"_small.jpg"));
+//			                             buffImg = new BufferedImage(smallpicsize, smallpicsize, BufferedImage.TYPE_INT_RGB);  
+//			                             buffImg.getGraphics().drawImage(  
+//			                                     srcImg.getScaledInstance(smallpicsize, smallpicsize, Image.SCALE_SMOOTH), 0,  
+//			                                     0, null);   
+//			                             ImageIO.write(buffImg, "JPG", new File(s1+"\\"+result+"_small.jpg"));
 			                             response.sendRedirect("manage-result.jsp");
 	                            	 
 	                             }

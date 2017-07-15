@@ -93,4 +93,6 @@ public interface IShoppingDAO {
 	public int updateReply(String reply,int Ledid);
 	//根据id找评论
 	public Word findWordByid(int Ledid);
+	//根据id找订单
+	public Orders findorderByid(int orderid);
 }

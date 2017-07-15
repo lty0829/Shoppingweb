@@ -81,7 +81,7 @@ public class managecast extends HttpServlet {
 		else if(commodityid!=null&&userid==null){
 			int int_commodity=Integer.parseInt(commodityid);
 			request.setAttribute("message", "«Îµ«»Î");
-			String str = "product-view.jsp?id="+int_commodity;
+			String str = "/login.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(str);
 	        rd.forward(request,response);
 		}
@@ -115,7 +115,7 @@ public class managecast extends HttpServlet {
 				}
 				else{
 					request.setAttribute("message", "«Îµ«»Î");
-					String str = "/product-view.jsp?id="+int_commodity;
+					String str = "/login.jsp";
 					RequestDispatcher rd=request.getRequestDispatcher(str);
 			        rd.forward(request,response);
 				}
@@ -150,7 +150,12 @@ public class managecast extends HttpServlet {
 		String price[] = request.getParameterValues("price");
 		String number[] = request.getParameterValues("number");
 		String comid[] = request.getParameterValues("comid");
+		String check[] = request.getParameterValues("Fruit");
+		if(check!=null){
+		int j=0;
 		for(int i=0;i<number.length&&isgo;i++){
+			if(j<check.length&&check[j].equals(comid[i])) j++;
+			else continue;
 			int comidx = Integer.parseInt(comid[i]);
 			int numx = Integer.parseInt(number[i]);
 			Commodity com = DAOFactory.getIShoppingDAOInstance().findComById(comidx);
@@ -162,6 +167,7 @@ public class managecast extends HttpServlet {
 		        rd.forward(request,response);
 			}
 		}
+		j=0;
 		if(price!=null&&isgo){
 			HttpSession session = request.getSession(true);
 			User user = (User)session.getAttribute("user");
@@ -176,6 +182,8 @@ public class managecast extends HttpServlet {
 				int orderKey=DAOFactory.getIShoppingDAOInstance().insertOrders(order);
 				DAOFactory.getIShoppingDAOInstance().dropCastByUserid(user.getUserid());
 				for(int i=0;i<price.length;i++){
+					if(j<check.length&&check[j].equals(comid[i]))j++;
+					else continue;
 					int int_com=Integer.parseInt(comid[i]);
 					int int_number = Integer.parseInt(number[i]);
 					float int_price = Float.parseFloat(price[i]);
@@ -202,8 +210,15 @@ public class managecast extends HttpServlet {
 			RequestDispatcher rd=request.getRequestDispatcher(str);
 	        rd.forward(request,response);
 		}
-		
+		}	
+		else{
+			request.setAttribute("message", "«Î—°‘Ò");
+			String str = "/shopping.jsp";
+			RequestDispatcher rd=request.getRequestDispatcher(str);
+	        rd.forward(request,response);
+		}
 	}
+	
 
 	/**
 	 * Initialization of the servlet. <br>

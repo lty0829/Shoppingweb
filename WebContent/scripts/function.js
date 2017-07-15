@@ -345,8 +345,8 @@ $(function(){
     //修改
     $(".number").find("span").click(function(){
         var $tds=$(this).parent().parent().children("td");
-        var $price= $($tds[1]);
-        var $number=$($tds[2]);
+        var $price= $($tds[2]);
+        var $number=$($tds[3]);
         var price = $price.find("input[type='hidden']").val();//存值
         var $priceBox =$price.find("span");//现实价钱
         var $number= $number.find("input");//得到存储input对象
@@ -366,14 +366,22 @@ $(function(){
         $priceBox.text("￥" + totalnum);
         $("#shopping").find("#total").text("总计：￥"+totalPrice());
     });
+	$(".choic").find("input[name='Fruit']").change(function() { 
+				
+		$("#shopping").find("#total").text("总计：￥"+totalPrice());
+	}); 
     //计算总价
     function totalPrice(){
         var totalPrice=0;
         $("#shopping").find(".price").find("input[type='hidden']").each(function(i,d){
             var p= parseFloat($(d).val());
             var n = $(d).parent().parent().find("input[name='number']").val();
-            totalPrice=Math.round((totalPrice+p*n)*100)/100;
-			
+			var $check = $(d).parent().parent().find("input[name='Fruit']");
+				if($check.attr("checked")){
+					totalPrice=Math.round((totalPrice+p*n)*100)/100;
+	
+				}
+
         });
         return totalPrice;
     }
