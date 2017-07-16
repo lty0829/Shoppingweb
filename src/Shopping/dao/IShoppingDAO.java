@@ -59,6 +59,8 @@ public interface IShoppingDAO {
 	public List<Orders> findLimitOrderByid(int userid,int begin,int end); 
 	//根据日期范围查找
 	public List<Orders> findOrderByBirthday(String begin,String end);
+	//根据日期范围和状态查找
+	public List<Orders> findOrderByBirthdayandStatus(String begin,String end,int status);
 	//根据状态查找订单
 	public List<Orders> findOrderByStatue(int statue);
 	//插入订单
@@ -95,4 +97,6 @@ public interface IShoppingDAO {
 	public Word findWordByid(int Ledid);
 	//根据id找订单
 	public Orders findorderByid(int orderid);
+	//根据类型数组查询商品
+	public List<Commodity> findComByAnyId(String csf[]); 
 }

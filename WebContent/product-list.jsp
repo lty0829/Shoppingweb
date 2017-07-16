@@ -21,10 +21,18 @@
 		<%
 			String csfid = request.getParameter("csf");
 			String keyword1 = request.getParameter("keyword");
+			String all = request.getParameter("all");
+			if(all!=null) {
+				session.removeAttribute("ifcsf");
+				session.removeAttribute("comlist");
+			}
+			List<Commodity> checklist = (List<Commodity>)session.getAttribute("comlist");
 			String keyword = null;
 			if (keyword1 != null)
 				keyword = new String(keyword1.getBytes("ISO-8859-1"), "utf-8");
 			if (csfid != null) {
+				session.removeAttribute("ifcsf");
+				session.removeAttribute("comlist");
 				int int_csf = Integer.parseInt(csfid);
 				Classify csf = DAOFactory.getIShoppingDAOInstance()
 						.findCsfById(int_csf);
@@ -103,6 +111,7 @@
 						</div>
 					</div>
 				</div>
+						
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -125,6 +134,8 @@
 					<div class="clear"></div>
 					<ul class="product clearfix">
 						<%
+							session.removeAttribute("ifcsf");
+							session.removeAttribute("comlist");
 							List<Commodity> comlist = DAOFactory.getIShoppingDAOInstance()
 										.searchComByName(keyword);
 								String jspURL = "product-list.jsp?keyword="+keyword;
@@ -196,20 +207,22 @@
 		%>
 		<div id="position" class="wrap">
 			您现在的位置：
-			<a href="index.jsp">秀品网</a>&gt; 全部商品
+			<a href="index.jsp">秀品网</a>&gt; <%if(checklist==null){ %>全部商品<%}else{ %>复选<%} %>
 		</div>
 		<div id="main" class="wrap">
 			<jsp:include page="./public_page/head1.jsp" />
 			<div class="main">
 				<div class="product-list">
 					<h2>
-						全部商品
+						<%if(checklist==null){ %>全部商品<%}else{ %>复选<%} %>
 					</h2>
 					<div class="clear"></div>
 					<ul class="product clearfix">
 						<%						
 							List<Commodity> comlist = DAOFactory.getIShoppingDAOInstance()
 										.getAllCom();
+								if(checklist!=null) comlist=checklist;
+										
 								String jspURL = "product-list.jsp";
 								// 定义如下分页变量
 								// 1、定义每页要显示的记录数
@@ -271,6 +284,7 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="clear"></div>
 		</div>
 		<%

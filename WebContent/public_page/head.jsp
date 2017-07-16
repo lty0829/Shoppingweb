@@ -38,10 +38,10 @@
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
-			<li class="first"><a href="product-list.jsp">全部商品</a></li>
+			<li class="first"><a href="product-list.jsp?all=0">全部商品</a></li>
 			<% 
 				List<Classify> csflist= DAOFactory.getIShoppingDAOInstance().getAllCsf();
-				for(int i=0;i<csflist.size()&&i<5;i++){
+				for(int i=0;i<csflist.size()&&i<8;i++){
 			 %>
 			 <li><a href="product-list.jsp?csf=<%=csflist.get(i).getClassifyid() %>"><%=csflist.get(i).getName() %></a></li>
 			 <%} %>

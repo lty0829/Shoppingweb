@@ -2,6 +2,14 @@
 	import="java.util.*,Shopping.model.vo.*" pageEncoding="utf-8"%>
 <%@page import="Shopping.factory.DAOFactory"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+String bir1 = request.getParameter("bir1");
+			String bir2 = request.getParameter("bir2");
+			String selectid = request.getParameter("selectid");
+
+
+ %>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,7 +28,11 @@
 		$(function() {
 		$(".classifyD").change(function() {
 			var number = $(this).val();
-			location.href = "order.jsp?selectid=" + number;
+			var url = "order.jsp?selectid=" + number;
+			<%if(bir1!=null&&bir2!=null){  %>
+				url+="&&bir1=<%=bir1%>&&bir2=<%=bir2%>";
+			<%}%>
+			location.href = url;
 		});
 			$("#birthday1").click(function(){
 			
@@ -39,14 +51,12 @@
 	</head>
 
 	<body>
-		<jsp:include page="../public_page/managehead.jsp" />
+		<br><br><jsp:include page="../public_page/managehead.jsp" />
 		<div id="position" class="wrap">
 			您现在的位置： 管理后台
 		</div>
 		<%
-			String bir1 = request.getParameter("bir1");
-			String bir2 = request.getParameter("bir2");
-			String selectid = request.getParameter("selectid");
+			
 			int int_select = 3;
 			if (selectid != null)
 				int_select = Integer.parseInt(selectid);
@@ -91,6 +101,10 @@
 					<table class="list">
 						<%
 							String jspURL = "order.jsp";
+							if(bir1!=null&&bir2!=null)
+								jspURL +="bir1="+bir1+"&&bir2="+bir2+"&&"; 
+							if (int_select != 3)
+								jspURL +="selectid="+selectid;
 							// 定义如下分页变量
 							// 1、定义每页要显示的记录数
 							double lineSize = 10;
@@ -103,7 +117,8 @@
 							}
 
 							List<Orders> list = new ArrayList<Orders>();
-							if(int_select==3 &&bir1!=null&&bir2!=null)
+							if(int_select!=3&&bir1!=null&&bir2!=null) list = DAOFactory.getIShoppingDAOInstance().findOrderByBirthdayandStatus(bir1,bir2,int_select);
+						else if(int_select==3 &&bir1!=null&&bir2!=null)
 								list = DAOFactory.getIShoppingDAOInstance().findOrderByBirthday(bir1,bir2);
 							else if (int_select == 3)
 								list = DAOFactory.getIShoppingDAOInstance().findAllOrder();

@@ -262,6 +262,7 @@ function openPage(curpage) {
 					</div>
 				</div>
 			</div>
+	
 		</div>
 	</body>
 	<%

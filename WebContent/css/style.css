@@ -108,8 +108,12 @@ a:hover, a:active { color:#3a52a8; text-decoration:underline; }
 #main .lefter .box { border:1px solid #c3c3c3; }
 #main .lefter h2 { background:#fff0d9; font-size:14px; color:#853200; padding:2px 8px; }
 #main .lefter .box dl dt { color:#404040; font-weight:bold; background:#fafafa; padding:2px 10px;cursor:pointer }
-#main .lefter .box dl dd { margin-left:10px; background:url(../images/bg.png) -232px -82px no-repeat; padding-left:25px; display:block}
+#main .lefter .box dl .boxd { margin-left:10px; background:url(../images/bg.png) -232px -82px no-repeat; padding-left:25px; display:block}
 #main .lefter .box dl dd a { color:#666; }
+#main .lefter .box dl .checkd { margin-left:10px;  display:block}
+#main .lefter .box dl input { margin-right:10px;  background-color:##ff835a}
+
+
 #main .lefter .last-view { border:1px solid #c3c3c3; }
 #main .lefter .last-view dl { margin:5px; }
 #main .lefter .last-view dl dt { float:left; width:60px; height:60px; text-align:center; }

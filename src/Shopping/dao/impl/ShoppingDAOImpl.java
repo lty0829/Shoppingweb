@@ -1370,6 +1370,86 @@ public class ShoppingDAOImpl implements IShoppingDAO{
 		}
 		return order;
 	}
+	@Override
+	public List<Commodity> findComByAnyId(String[] csf) {
+		// TODO Auto-generated method stub
+		String sql ="select * from commodity where type = 0";
+		if(csf!=null){
+		for(int i=0;i<csf.length;i++){
+			sql+=" or type = ?";
+		}
+		}
+		List<Commodity> list = null;
+		try {
+			this.pstmt = this.conn.prepareStatement(sql);
+			if(csf!=null){
+			for(int i=0;i<csf.length;i++){
+				int int_csf = Integer.parseInt(csf[i]);
+				this.pstmt.setInt(i+1, int_csf);
+			}
+			}
+			ResultSet rs = this.pstmt.executeQuery();
+			while (rs.next()) {
+				if(list==null) list = new ArrayList<Commodity>();
+				Commodity com = new Commodity();
+				com.setCommodityID(rs.getInt("CommodityID"));
+				com.setCommodityName(rs.getString("CommodityName"));
+				com.setCommodityPrice(rs.getFloat("CommodityPrice"));
+				com.setDescription(rs.getString("Description"));
+				com.setProductor(rs.getString("Productor"));
+				com.setQuantity(rs.getInt("Quantity"));
+				com.setType(rs.getInt("Type"));
+				list.add(com);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				this.pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	@Override
+	public List<Orders> findOrderByBirthdayandStatus(String begin, String end,
+			int status) {
+		// TODO Auto-generated method stub
+		String sql = "select * from `orders` where OrderDate > ? and OrderDate < ? and Statue = ? order by OrderDate";
+		List<Orders> list = null;
+		try{
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setString(1, begin);
+			this.pstmt.setString(2, end);
+			this.pstmt.setInt(3, status);
+			ResultSet rs = this.pstmt.executeQuery();
+			while(rs.next()){
+				if(list==null) list = new ArrayList<Orders>();
+				Orders order = new Orders();
+				order.setOrderID(rs.getInt("OrderID"));
+				order.setUserID(rs.getInt("UserID"));
+				order.setOrderDate(rs.getTimestamp("OrderDate"));
+				order.setStatue(rs.getInt("Statue"));
+				order.setTotalprice(rs.getFloat("Totalprice"));
+				list.add(order);
+			}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				this.pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 
 
 }

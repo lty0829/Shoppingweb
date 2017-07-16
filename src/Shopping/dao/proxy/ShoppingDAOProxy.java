@@ -746,5 +746,38 @@ public class ShoppingDAOProxy implements IShoppingDAO{
 		}
 		return order;
 	}
+
+
+
+	@Override
+	public List<Commodity> findComByAnyId(String[] csf) {
+		// TODO Auto-generated method stub
+		List<Commodity>list = null;
+		list = this.dao.findComByAnyId(csf);
+		try {
+			this.dbc.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
+	@Override
+	public List<Orders> findOrderByBirthdayandStatus(String begin, String end,
+			int status) {
+		// TODO Auto-generated method stub
+		List<Orders> list = null;
+		list = this.dao.findOrderByBirthdayandStatus(begin, end, status);
+		try {
+			this.dbc.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 }
