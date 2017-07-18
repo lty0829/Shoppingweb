@@ -44,6 +44,7 @@ public class ShoppingDAOImpl implements IShoppingDAO{
 				user.setGender(rs.getInt("Gender"));
 				user.setAddress(rs.getString("Address"));
 				user.setBirthday(rs.getString("Birthday"));	
+				user.setEmail(rs.getString("Email"));
 				list.add(user);
 			}
 		} catch (Exception e) {
@@ -112,6 +113,7 @@ public class ShoppingDAOImpl implements IShoppingDAO{
 				user.setGender(rs.getInt("Gender"));
 				user.setAddress(rs.getString("Address"));
 				user.setBirthday(rs.getString("Birthday"));
+				user.setEmail(rs.getString("Email"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -129,8 +131,8 @@ public class ShoppingDAOImpl implements IShoppingDAO{
 	@Override
 	public int save(User user) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO users(Password,UserName,Phone,Gender,Address,Birthday,Status)" +
-				" VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO users(Password,UserName,Phone,Gender,Address,Birthday,Status,Email)" +
+				" VALUES(?,?,?,?,?,?,?,?)";
 		int result = 0;
 		try {
 			this.pstmt = this.conn.prepareStatement(sql);
@@ -141,6 +143,7 @@ public class ShoppingDAOImpl implements IShoppingDAO{
 			this.pstmt.setString(5, user.getAddress());
 			this.pstmt.setString(6,user.getBirthday());
 			this.pstmt.setInt(7, 0);
+			this.pstmt.setString(8, user.getEmail());
 			result = this.pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -629,7 +632,7 @@ public class ShoppingDAOImpl implements IShoppingDAO{
 	public int updateUser(User user) {
 		// TODO Auto-generated method stub
 		String sql = "update users set Password = ? , UserName = ?, Phone = ?," +
-				"Gender = ?,Address = ?,Birthday = ? where userid = ?";
+				"Gender = ?,Address = ?,Birthday = ?s where userid = ?";
 		int result = 0;
 		try {
 			this.pstmt = this.conn.prepareStatement(sql);
@@ -808,6 +811,7 @@ public class ShoppingDAOImpl implements IShoppingDAO{
 				user.setGender(rs.getInt("Gender"));
 				user.setAddress(rs.getString("Address"));
 				user.setBirthday(rs.getString("Birthday"));
+				user.setEmail(rs.getString("Email"));
 			}
 		}catch (Exception e) {
 			// TODO: handle exception

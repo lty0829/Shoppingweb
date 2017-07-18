@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Shopping.email.Sendmail;
+
 import Shopping.factory.DAOFactory;
 import Shopping.model.vo.User;
 
@@ -60,15 +62,17 @@ public class RegServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset = utf-8");
-		
+		request.setCharacterEncoding("utf-8");
 		String name = request.getParameter("userId");
 		String pwd = request.getParameter("password");
 		String phone = request.getParameter("phone");
 		String gender = request.getParameter("gender");
 		String address= request.getParameter("address");
+		String email = request.getParameter("email");
 		String birthday = request.getParameter("birthday");
 		String address1 = new String(address.getBytes("ISO-8859-1"),"utf-8");
 		User user = new User();
+		user.setEmail(email);
 		user.setUserName(name);
 		user.setPassword(pwd);
 		user.setPhone(phone);
@@ -86,6 +90,8 @@ public class RegServlet extends HttpServlet {
 	        rd.forward(request,response);
 		}else{
 			str = "/reg-result.jsp";
+			Sendmail send = new Sendmail(user);
+			send.start();
 			RequestDispatcher rd=request.getRequestDispatcher(str);
 	        rd.forward(request,response);
 		}

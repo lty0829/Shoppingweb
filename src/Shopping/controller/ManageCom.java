@@ -99,7 +99,6 @@ public class ManageCom extends HttpServlet {
         upload.setHeaderEncoding("UTF-8");   
         factory.setSizeThreshold(1024 * 500);//设置内存的临界值为500K
         String s = this.getServletContext().getRealPath("images\\product");   
-        String s1 = "D:\\MyEclipse 8.5\\workplace\\ShoppingWeb\\WebContent\\images\\product";
         File linshi = new File(s);//当超过500K的时候，存到一个临时文件夹中  
         factory.setRepository(linshi);  
         upload.setSizeMax(1024 * 1024 * 5);//设置上传的文件总的大小不能超过5M

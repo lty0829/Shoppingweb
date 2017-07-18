@@ -84,6 +84,14 @@ function openPage(curpage) {
         $number.val(number);
     		});
 		})
+	<%}else{%>
+	$(function(){
+			$(".button").find("input").click(function(){
+				alert('请登入')
+				 location.href = 'login.jsp';			
+			});
+	
+	})
 	<%}%>
 </script>
 	<body>
@@ -139,7 +147,7 @@ function openPage(curpage) {
 								if(castnum<10){%>managecast?commodityid=<%=com.getCommodityID()%>&&userid=<%=user.getUserid()%><%}
 								else {%>#" onclick="beyondcall()<%}
 																			
-								}%>">放入购物车</a>
+								}else{%>managecast?commodityid=<%=com.getCommodityID()%><%} %>">放入购物车</a>
 						</div>
 					</div>
 					<div class="clear"></div>

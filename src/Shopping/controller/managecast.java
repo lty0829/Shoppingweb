@@ -47,6 +47,7 @@ public class managecast extends HttpServlet {
 
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset = utf-8");
+		System.out.println("zzzzzzzzzz");
 		String castid = request.getParameter("castid");
 		if(castid!=null){
 			int int_cast=Integer.parseInt(castid);
@@ -79,7 +80,6 @@ public class managecast extends HttpServlet {
 			}
 		}
 		else if(commodityid!=null&&userid==null){
-			int int_commodity=Integer.parseInt(commodityid);
 			request.setAttribute("message", "«Îµ«»Î");
 			String str = "/login.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(str);
@@ -199,7 +199,7 @@ public class managecast extends HttpServlet {
 			}
 			else{
 				request.setAttribute("message", "«Îµ«»Î");
-				String str = "/shopping.jsp";
+				String str = "/login.jsp";
 				RequestDispatcher rd=request.getRequestDispatcher(str);
 		        rd.forward(request,response);
 			}

@@ -11,6 +11,14 @@ public class User {
 	private int Gender;
 	private String address;
 	private String birthday;
+	private String Email;
+	
+	public String getEmail() {
+		return Email;
+	}
+	public void setEmail(String email) {
+		Email = email;
+	}
 	public int getUserid() {
 		return userid;
 	}

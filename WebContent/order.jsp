@@ -128,6 +128,7 @@
 							else
 								list = DAOFactory.getIShoppingDAOInstance().findOrderByStatue(
 										int_select);
+							if(list==null) list = new ArrayList<Orders>();
 
 						double limitpage = Math.ceil((double) list.size() / lineSize);
 						Iterator iterator = list.iterator();

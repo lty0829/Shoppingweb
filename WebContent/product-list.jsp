@@ -38,6 +38,7 @@
 						.findCsfById(int_csf);
 				List<Commodity> comlist = DAOFactory.getIShoppingDAOInstance()
 						.getComByClssify(int_csf);
+				if(comlist==null) comlist=new ArrayList<Commodity>();
 		%>
 		<div id="position" class="wrap">
 			您现在的位置：
@@ -63,6 +64,7 @@
 									e.printStackTrace();
 								}
 								double limitpage = Math.ceil((double) comlist.size() / lineSize);
+								if(limitpage==0) limitpage=1;
 								Commodity com = null;
 								if (comlist != null) {
 									Iterator iterator = comlist.iterator();

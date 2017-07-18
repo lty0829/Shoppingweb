@@ -62,12 +62,12 @@ function reg()
 		document.form2.phone.focus();
 		return false;
 	}
-	/*else if (!pattern2.test(document.form2.phone.value)) 
+	else if (!pattern2.test(document.form2.phone.value)) 
 	{
 		alert("电话号码不符规则!");
 		document.form2.phone.focus();
 		return false;
-	}*/
+	}
 	else if (document.form2.address.value == "" ) 
 	{
 		alert("请输入联系地址!");
@@ -131,7 +131,10 @@ function reg()
 				<td width="42%" height="25" align="right" class="field">出生日期：</td>
 				<td width="58%" height="25">&nbsp;<input id="birthday" class="text" type="text" name="birthday" /></td>
 			</tr>
-              
+                <tr>
+				<td width="42%" height="25" align="right" class="field">邮箱：</td>
+				<td width="58%" height="25">&nbsp;<input id="birthday" class="text" type="email" name="email" /></td>
+			</tr>
                <tr>
                 <td height="25" align="right" class="field">联系电话*：</td>
                 <td height="25" class="tabletd1">&nbsp;<input class="text" type="text" name="phone"></td>
